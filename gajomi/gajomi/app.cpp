@@ -12,7 +12,7 @@ bool App::OnInit() {
     }
     _ufo.OnInit();
     _ufo.X = 200;
-    _ufo.Y = 100;
+    _ufo.Y = 120;
     _player.Y = 550;
     _player.X = 500;
     _engine.AddEntity(&_ufo);
