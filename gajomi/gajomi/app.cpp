@@ -7,7 +7,10 @@ App::App()
 bool App::OnInit() {
     _engine.OnInit();
 
-    if(_cannon.OnLoad("./images/cannon.png", 80, 64, 8) == false) {
+    if (!_engine.loadBackground("./images/background.png")) {
+        return false;
+    }
+    if(_cannon.OnLoad("./images/cannon.png", 64, 80, 17) == false) {
         return false;
     }
     _ufo.OnInit();

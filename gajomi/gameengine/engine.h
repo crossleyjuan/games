@@ -24,6 +24,7 @@ private:
     bool _running;
 
     SDL_Surface*    _surfDisplay;
+    SDL_Surface*    _surfBackground;
 
     Entity* _player;
 
@@ -33,6 +34,7 @@ public:
 
     void AddEntity(Entity* ent);
     void SetPlayer(Entity* ent);
+    bool loadBackground(char* file);
 
     bool OnInit();
     void OnEvent(SDL_Event* evt);

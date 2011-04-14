@@ -64,8 +64,8 @@ void Engine::OnLoop() {
 }
 
 void Engine::OnRender() {
-    Area::AreaControl.OnRender(_surfDisplay, -Camera::CameraControl.GetX(), -Camera::CameraControl.GetY());
-
+//    Area::AreaControl.OnRender(_surfDisplay, -Camera::CameraControl.GetX(), -Camera::CameraControl.GetY());
+    Surface::OnDraw(_surfDisplay, _surfBackground, 0, 0);
     for(int i = 0;i < Entity::EntityList.size();i++) {
         if(!Entity::EntityList[i]) continue;
         Entity::EntityList[i]->OnRender(_surfDisplay);
@@ -153,4 +153,13 @@ void Engine::SetPlayer(Entity* ent) {
 
     Camera::CameraControl.TargetMode = TARGET_MODE_CENTER;
     Camera::CameraControl.SetTarget(&_player->X, &_player->Y);
+}
+
+bool Engine::loadBackground(char *file) {
+    _surfBackground = Surface::loadImage(file);
+    if (_surfBackground == NULL) {
+        return false;
+    } else {
+        return true;
+    }
 }

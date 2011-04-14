@@ -18,7 +18,7 @@ LIBS += -LC:\development\SDL_image-1.2.10\lib
 LIBS += -lSDL_image
 
 
-INCLUDEPATH += C:/development/SDL-1.2.14/include/SDL
+INCLUDEPATH += C:/development/SDL-1.2.14/include
 INCLUDEPATH += C:\development\SDL_image-1.2.10\include
 
 DEFINES += GAMEENGINE_LIBRARY

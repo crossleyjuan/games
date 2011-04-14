@@ -8,11 +8,12 @@ class Cannon: public Entity
 private:
     float* targetX;
     float* targetY;
+    int current;
 
 public:
     Cannon();
 
-    void OnAnimate();
+    void OnLoop();
 
     void SetTarget(float* X, float *Y);
 };
