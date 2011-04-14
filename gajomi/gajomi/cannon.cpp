@@ -5,7 +5,7 @@ Cannon::Cannon()
 }
 
 void Cannon::OnAnimate() {
-    Anim_Control.SetCurrentFrame(3);
+    Anim_Control.SetCurrentFrame(0);
 }
 
 void Cannon::SetTarget(float *X, float *Y) {
