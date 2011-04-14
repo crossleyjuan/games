@@ -7,18 +7,18 @@ App::App()
 bool App::OnInit() {
     _engine.OnInit();
 
-    if(_player.OnLoad("./images/yoshi.png", 64, 64, 8) == false) {
+    if(_cannon.OnLoad("./images/cannon.png", 80, 64, 8) == false) {
         return false;
     }
     _ufo.OnInit();
     _ufo.X = 200;
-    _ufo.Y = 100;
-    _player.Y = 550;
-    _player.X = 500;
+    _ufo.Y = 120;
+    _cannon.Y = 550;
+    _cannon.X = 500;
     _engine.AddEntity(&_ufo);
-    _engine.SetPlayer(&_player);
-    _ufo.SetTarget(&_player.X, &_player.Y);
-
+    _engine.SetPlayer(&_cannon);
+    _ufo.SetTarget(&_cannon.X, &_cannon.Y);
+    _cannon.SetTarget(&_ufo.X, &_ufo.Y);
     return true;
 }
 
