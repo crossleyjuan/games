@@ -1,7 +1,8 @@
 #ifndef APP_H
 #define APP_H
 
-#include "player.h"
+//#include "player.h"
+#include "cannon.h"
 #include "engine.h"
 #include "ufo.h"
 
@@ -16,7 +17,8 @@ private:
 
 private:
     Engine  _engine;
-    Player  _player;
+//    Player  _player;
+    Cannon  _cannon;
     UFO     _ufo;
 };
 

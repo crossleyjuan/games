@@ -28,14 +28,16 @@ SOURCES += main.cpp \
     player.cpp \
     enemy.cpp \
     ufo.cpp \
-    missil.cpp
+    missil.cpp \
+    cannon.cpp
 
 HEADERS  += \
     app.h \
     player.h \
     enemy.h \
     ufo.h \
-    missil.h
+    missil.h \
+    cannon.h
 
 FORMS    +=
 
