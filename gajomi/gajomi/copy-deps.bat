@@ -7,3 +7,5 @@ mkdir ..\gajomi-bin\images
 xcopy images ..\gajomi-bin\images /S /Y
 mkdir ..\gajomi-bin\maps
 xcopy maps ..\gajomi-bin\maps /S /Y
+copy Levels.txt ..\gajomi-bin\Levels.txt 
+copy FreeSerif.ttf ..\gajomi-bin\FreeSerif.ttf

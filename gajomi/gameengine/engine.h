@@ -29,10 +29,12 @@ private:
     Entity* _player;
 
 public:
+    static Engine GameEngine;
     // Constructor
     Engine();
 
     void AddEntity(Entity* ent);
+    void RemoveEntity(Entity* ent);
     void SetPlayer(Entity* ent);
     bool loadBackground(char* file);
 

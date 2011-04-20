@@ -1,5 +1,7 @@
 #include "missil.h"
 #include "fps.h"
+#include "engine.h"
+
 #include <math.h>
 
 Missil::Missil()
@@ -37,8 +39,8 @@ void Missil::OnLoop() {
     dirX = dirX / hyp;
     dirY = dirY / hyp;
 
-    float newX = dirX * 100 * FPS::FPSControl.GetSpeedFactor();
-    float newY = dirY * 100 * FPS::FPSControl.GetSpeedFactor();
+    float newX = dirX * 300 * FPS::FPSControl.GetSpeedFactor();
+    float newY = dirY * 300 * FPS::FPSControl.GetSpeedFactor();
 /*
     AccelX = 1;
     AccelY = tang * (AccelX - X) + Y;
@@ -57,4 +59,13 @@ void Missil::OnLoop() {
 
 void Missil::Fire() {
     _fired = true;
+}
+
+bool Missil::OnCollision(Entity *Entity) {
+    _fired = false;
+    Engine::GameEngine.RemoveEntity(this);
+}
+
+bool Missil::isFired() {
+    return _fired;
 }

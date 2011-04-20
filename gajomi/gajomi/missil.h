@@ -20,8 +20,10 @@ public:
     void OnInit();
 
     virtual void OnLoop();
+    virtual bool OnCollision(Entity *Entity);
 
     void Fire();
+    bool isFired();
 
     void SetTarget(float *x, float *y);
 };

@@ -16,10 +16,12 @@ LIBS += -lSDL
 LIBS += -lSDLmain
 LIBS += -LC:\development\SDL_image-1.2.10\lib
 LIBS += -lSDL_image
-
+LIBS += -LC:\development\SDL_ttf-2.0.10\lib
+LIBS += -lSDL_ttf
 
 INCLUDEPATH += C:/development/SDL-1.2.14/include/SDL
-INCLUDEPATH += C:\development\SDL_image-1.2.10\include
+INCLUDEPATH += C:/development\SDL_image-1.2.10\include
+INCLUDEPATH += C:\development\SDL_ttf-2.0.10\include
 
 DEFINES += GAMEENGINE_LIBRARY
 
@@ -34,7 +36,8 @@ SOURCES += \
     camera.cpp \
     area.cpp \
     animation.cpp \
-    engine.cpp
+    engine.cpp \
+    text.cpp
 
 HEADERS +=\
         gameengine_global.h \
@@ -48,7 +51,8 @@ HEADERS +=\
     camera.h \
     area.h \
     animation.h \
-    engine.h
+    engine.h \
+    text.h
 
 OTHER_FILES += \
     maps/2.map \

@@ -1,0 +1,4 @@
+3
+aeiou
+1234567890
+abcdefghijklmnopqrstuvwxyz

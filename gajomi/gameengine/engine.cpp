@@ -2,6 +2,10 @@
 #include "surface.h"
 #include "define.h"
 #include "fps.h"
+#include "text.h"
+#include <SDL_ttf.h>
+
+Engine Engine::GameEngine;
 
 Engine::Engine() {
     _running = false;
@@ -21,6 +25,11 @@ bool Engine::OnInit() {
     if(Area::AreaControl.OnLoad("./maps/1.area") == false) {
         return false;
     }
+
+    if (TTF_Init() != 0) {
+        return false;
+    }
+
     SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL / 3);
 
     return true;
@@ -84,6 +93,7 @@ void Engine::OnCleanUp() {
     }
 
     Entity::EntityList.clear();
+    TTF_Quit();
     SDL_Quit();
 }
 
@@ -148,6 +158,19 @@ void Engine::AddEntity(Entity* ent) {
     Entity::EntityList.push_back(ent);
 }
 
+void Engine::RemoveEntity(Entity *ent) {
+    std::vector<Entity*>::iterator iter;
+    for (iter = Entity::EntityList.begin(); iter != Entity::EntityList.end(); iter++) {
+        Entity* current = *iter;
+        if (current == ent) {
+            break;
+        }
+    }
+    if (iter != Entity::EntityList.end()) {
+        Entity::EntityList.erase(iter);
+    }
+}
+
 void Engine::SetPlayer(Entity* ent) {
     _player = ent;
     AddEntity(_player);
@@ -165,3 +188,4 @@ bool Engine::loadBackground(char *file) {
         return true;
     }
 }
+

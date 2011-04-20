@@ -6,6 +6,8 @@
 #include "engine.h"
 #include "ufo.h"
 #include "missil.h"
+#include "level.h"
+#include "text.h"
 
 class App : public Engine
 {
@@ -24,6 +26,12 @@ private:
     Cannon  _cannon;
     UFO     _ufo;
     Missil  _missil;
+    Text*    _text;
+
+    Level _level;
+    int _hits;
+
+    void renderLaunchCode();
 };
 
 #endif // APP_H
