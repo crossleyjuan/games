@@ -105,6 +105,7 @@ void Engine::OnExit() {
     _running = false;
 }
 
+/*
 void Engine::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
     switch(sym) {
     case SDLK_LEFT: {
@@ -141,6 +142,7 @@ void Engine::OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode) {
         }
     }
 }
+*/
 
 void Engine::AddEntity(Entity* ent) {
     Entity::EntityList.push_back(ent);

@@ -43,8 +43,10 @@ public:
     void OnCleanUp();
 
     //Events
-    void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
-    void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
+    /*
+    virtual void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
+    virtual void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
+    */
     void OnExit();
 
     int OnExecute();

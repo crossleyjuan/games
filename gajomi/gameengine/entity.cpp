@@ -11,6 +11,8 @@ Entity::Entity() {
 
     X = 0;
     Y = 0;
+//    centerX = 0;
+//    centerY = 0;
 
     Width   = 0;
     Height  = 0;
@@ -62,6 +64,10 @@ Entity::Entity(const Entity &ent) {
     this->MaxSpeedY = ent.MaxSpeedY;
     this->MoveLeft = ent.MoveLeft;
     this->MoveRight = ent.MoveRight;
+    this->X = ent.X;
+    this->Y = ent.Y;
+    this->centerX = ent.centerX;
+    this->centerY = ent.centerY;
 }
 
 Entity::~Entity() {
@@ -199,6 +205,8 @@ void Entity::OnMove(float MoveX, float MoveY) {
         if(MoveX == 0 && MoveY  == 0)   break;
         if(NewX  == 0 && NewY   == 0)   break;
     }
+
+    refreshCenter();
 }
 
 void Entity::StopMove() {
@@ -315,3 +323,7 @@ bool Entity::Jump() {
     return true;
 }
 
+void Entity::refreshCenter() {
+    centerX = X + (Width / 2);
+    centerY = Y + (Height / 2);
+}

@@ -12,7 +12,7 @@ void UFO::OnInit() {
     Flags = ENTITY_FLAG_MAPONLY ; // | ENTITY_FLAG_GRAVITY
 
     MaxSpeedX = 2;
-    MaxSpeedY = 0.001;
+    MaxSpeedY = 0;
 
     MoveLeft = true;
 }

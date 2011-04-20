@@ -9,6 +9,11 @@ private:
     float* targetX;
     float* targetY;
 
+    float _speedX;
+    float _speedY;
+
+    bool _fired;
+
 public:
     Missil();
 
@@ -16,7 +21,9 @@ public:
 
     virtual void OnLoop();
 
-    void setTarget(float *x, float *y);
+    void Fire();
+
+    void SetTarget(float *x, float *y);
 };
 
 #endif // MISSIL_H

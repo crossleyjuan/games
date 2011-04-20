@@ -34,6 +34,8 @@ class GAMEENGINESHARED_EXPORT Entity {
     public:
         float           X;
         float           Y;
+        float           centerX;
+        float           centerY;
 
         int             Width;
         int             Height;
@@ -67,6 +69,7 @@ class GAMEENGINESHARED_EXPORT Entity {
         int     Col_Y;
         int     Col_Width;
         int     Col_Height;
+        void refreshCenter();
 
     public:
         Entity();

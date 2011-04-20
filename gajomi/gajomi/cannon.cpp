@@ -29,6 +29,6 @@ void Cannon::OnLoop() {
         angle = (float)180 + (float)angle;
     }
     int frame = (float)angle / (float)10.5;
-    frame++; // this corrects the size of the object, X and Y should be the center of the object and not the top-left
+    //frame++; // this corrects the size of the object, X and Y should be the center of the object and not the top-left
     Anim_Control.SetCurrentFrame(frame);
 }
