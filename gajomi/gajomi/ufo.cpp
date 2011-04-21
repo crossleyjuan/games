@@ -7,7 +7,7 @@ UFO::UFO()
 }
 
 void UFO::OnInit() {
-    OnLoad("./images/ufo.png", 300, 72, 0);
+    OnLoad("./images/ufo2.png", 300, 72, 11);
     Type =  ENTITY_TYPE_GENERIC;
     Flags = ENTITY_FLAG_MAPONLY ; // | ENTITY_FLAG_GRAVITY
 
@@ -15,6 +15,8 @@ void UFO::OnInit() {
     MaxSpeedY = 0;
 
     MoveLeft = true;
+    Anim_Control.Stop();
+    Anim_Control.CurrentFrame = 9;
 }
 
 void UFO::OnLoop() {
@@ -45,6 +47,9 @@ void UFO::OnLoop() {
     }
     */
     Enemy::OnLoop();
+    if (Anim_Control.IsRunning() && Anim_Control.CurrentFrame == 9) {
+        Anim_Control.Stop();
+    }
 }
 
 bool UFO::OnMapCollision() {
@@ -61,4 +66,8 @@ bool UFO::OnMapCollision() {
 void UFO::SetTarget(float *x, float *y) {
     this->targetX = x;
     this->targetY = y;
+}
+
+bool UFO::OnCollision(Entity *Entity) {
+    Anim_Control.Play();
 }

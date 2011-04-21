@@ -14,6 +14,7 @@ public:
     void OnInit();
 
     virtual bool OnMapCollision();
+    virtual bool OnCollision(Entity *Entity);
     void SetTarget(float* x, float* y);
     virtual void OnLoop();
 

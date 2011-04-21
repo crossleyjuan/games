@@ -11,10 +11,23 @@ Animation::Animation()
     OldTime         = 0;
 
     Oscillate       = false;
+    _running    = true;
 }
 
+Animation::Animation(const Animation &orig) {
+    this->CurrentFrame = orig.CurrentFrame;
+    this->FrameInc = orig.FrameInc;
+    this->FrameRate = orig.FrameRate;
+    this->MaxFrames = orig.MaxFrames;
+    this->OldTime = orig.OldTime;
+    this->Oscillate = orig.Oscillate;
+    this->Vertical = orig.Vertical;
+    this->_running = orig._running;
+}
 
 void Animation::OnAnimate() {
+    if (!_running) return;
+
     if(OldTime + FrameRate > SDL_GetTicks()) {
         return;
     }
@@ -52,4 +65,16 @@ void Animation::SetCurrentFrame(int Frame) {
 
 int Animation::GetCurrentFrame() {
     return CurrentFrame;
+}
+
+void Animation::Play() {
+    _running = true;
+}
+
+void Animation::Stop() {
+    _running = false;
+}
+
+bool Animation::IsRunning() {
+    return _running;
 }
