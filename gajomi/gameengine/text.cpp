@@ -19,7 +19,7 @@ Text::Text(char* text, int x, int y)
     this->AccelX = 0;
     this->AccelY = 0;
     this->Width = strlen(text)*24;
-    this->Height = 24;
+    this->Height = 80;
 }
 
 void Text::OnLoop() {

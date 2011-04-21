@@ -2,10 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 
 Level::Level()
 {
     _currentLevel = 0;
+    srand ( time(NULL) );
 }
 
 Level::~Level() {
@@ -58,6 +60,7 @@ void Level::CreateLaunchCode() {
     char* launchCodes = _levels.at(_currentLevel);
     int pos = -1;
     int len = strlen(launchCodes);
+    pos = rand() % len + 1;
     while ((pos < 0) || (pos >= len)) {
         pos = rand();
     }
