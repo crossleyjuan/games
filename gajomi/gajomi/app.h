@@ -8,11 +8,13 @@
 #include "missil.h"
 #include "level.h"
 #include "text.h"
+#include "sound.h"
 
 class App : public Engine
 {
 public:
     App();
+    virtual ~App();
     void OnExecute();
     virtual void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
     virtual void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
@@ -27,6 +29,7 @@ private:
     UFO     _ufo;
     Missil  _missil;
     Text*    _text;
+    Sound*   _beep;
 
     Level _level;
     int _hits;

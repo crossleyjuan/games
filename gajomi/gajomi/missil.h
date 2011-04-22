@@ -2,6 +2,7 @@
 #define MISSIL_H
 
 #include "entity.h"
+#include "sound.h"
 
 class Missil: public Entity
 {
@@ -13,11 +14,12 @@ private:
     float _speedY;
 
     bool _fired;
+    Sound* _explosionSound;
 
 public:
     Missil();
 
-    void OnInit();
+    bool OnInit();
 
     virtual void OnLoop();
     virtual bool OnCollision(Entity *Entity);

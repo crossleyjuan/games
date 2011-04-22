@@ -1,9 +1,17 @@
 #include "app.h"
+#include "soundengine.h"
+#include <stdlib.h>
 
 App::App()
 {
     _text = NULL;
     _hits = 0;
+    _beep = NULL;
+}
+
+App::~App() {
+    // delete(_beep) is not working
+    _beep = 0;
 }
 
 bool App::OnInit() {
@@ -15,13 +23,15 @@ bool App::OnInit() {
     if(_cannon.OnLoad("./images/cannon.png", 64, 80, 17) == false) {
         return false;
     }
-    if (!_missil.OnLoad("./images/rocket.png", 16, 30, 1)) {
+    if (!_missil.OnInit()) {
         return false;
     }
 
     if (!_level.OnInit()) {
         return false;
     }
+    _beep = new Sound("./sounds/beep.wav");
+
     _ufo.OnInit();
     _ufo.X = 200;
     _ufo.Y = 120;
@@ -64,6 +74,8 @@ void App::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
             _level.CreateLaunchCode();
         }
         renderLaunchCode();
+    } else {
+        _beep->Play();
     }
 }
 

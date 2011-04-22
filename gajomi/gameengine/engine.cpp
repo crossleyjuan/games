@@ -3,6 +3,7 @@
 #include "define.h"
 #include "fps.h"
 #include "text.h"
+#include "soundengine.h"
 #include <SDL_ttf.h>
 
 Engine Engine::GameEngine;
@@ -27,6 +28,9 @@ bool Engine::OnInit() {
     }
 
     if (TTF_Init() != 0) {
+        return false;
+    }
+    if (!SoundEngine::SoundManager.OnInit()) {
         return false;
     }
 
@@ -93,6 +97,7 @@ void Engine::OnCleanUp() {
     }
 
     Entity::EntityList.clear();
+    SoundEngine::SoundManager.OnCleanup();
     TTF_Quit();
     SDL_Quit();
 }

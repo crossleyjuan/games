@@ -18,10 +18,13 @@ LIBS += -LC:\development\SDL_image-1.2.10\lib
 LIBS += -lSDL_image
 LIBS += -LC:\development\SDL_ttf-2.0.10\lib
 LIBS += -lSDL_ttf
+LIBS += -LC:\development\SDL_mixer-1.2.11\lib
+LIBS += -lSDL_mixer
 
 INCLUDEPATH += C:/development/SDL-1.2.14/include/SDL
 INCLUDEPATH += C:/development\SDL_image-1.2.10\include
 INCLUDEPATH += C:\development\SDL_ttf-2.0.10\include
+INCLUDEPATH += C:\development\SDL_mixer-1.2.11\include
 
 DEFINES += GAMEENGINE_LIBRARY
 
@@ -37,7 +40,9 @@ SOURCES += \
     area.cpp \
     animation.cpp \
     engine.cpp \
-    text.cpp
+    text.cpp \
+    soundengine.cpp \
+    sound.cpp
 
 HEADERS +=\
         gameengine_global.h \
@@ -52,7 +57,9 @@ HEADERS +=\
     area.h \
     animation.h \
     engine.h \
-    text.h
+    text.h \
+    soundengine.h \
+    sound.h
 
 OTHER_FILES += \
     maps/2.map \
