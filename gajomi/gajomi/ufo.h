@@ -8,6 +8,7 @@ class UFO: public Enemy
 private:
     float* targetX;
     float* targetY;
+    bool    _isOnGround;
 
 public:
     UFO();
@@ -17,7 +18,7 @@ public:
     virtual bool OnCollision(Entity *Entity);
     void SetTarget(float* x, float* y);
     virtual void OnLoop();
-
+    virtual void reborn();
 };
 
 #endif // UFO_H

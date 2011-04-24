@@ -43,7 +43,12 @@ void Engine::OnEvent(SDL_Event* evt) {
     Event::OnEvent(evt);
 }
 
+void Engine::OnLocalLoop() {
+    // to be implemented by subclassing
+}
+
 void Engine::OnLoop() {
+    OnLocalLoop();
     //_yoshi.OnAnimate();
     FPS::FPSControl.OnLoop();
     for(int i = 0;i < Entity::EntityList.size();i++) {

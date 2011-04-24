@@ -1,5 +1,6 @@
 #include "app.h"
 #include "soundengine.h"
+#include "gamedefs.h"
 #include <stdlib.h>
 
 App::App()
@@ -61,6 +62,10 @@ void App::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
         return;
     }
 
+    if (_ufo.isDead()) {
+        return;
+    }
+
     if (_level.GetLaunchCode() == sym) {
         _missil.X = 500;
         _missil.Y = 520;
@@ -75,6 +80,7 @@ void App::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
         }
         renderLaunchCode();
     } else {
+        _cannon.reduceLifeByPercentage(DEFAULT_RESTORE_LIFE);
         _beep->Play();
     }
 }
@@ -93,4 +99,12 @@ void App::renderLaunchCode() {
 
     this->_text = new Text((char*)code, 100, 530);
     AddEntity(_text);
+}
+
+void App::OnLocalLoop() {
+    if (_ufo.isDead() && !_ufo.IsMoving()) {
+        _ufo.reborn();
+        _ufo.X = 200;
+        _ufo.Y = 120;
+    }
 }

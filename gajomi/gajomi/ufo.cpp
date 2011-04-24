@@ -1,4 +1,5 @@
 #include "ufo.h"
+#include "gamedefs.h"
 
 UFO::UFO()
 {
@@ -9,14 +10,9 @@ UFO::UFO()
 void UFO::OnInit() {
     OnLoad("./images/ufo2.png", 300, 72, 11);
     Type =  ENTITY_TYPE_GENERIC;
-    Flags = ENTITY_FLAG_MAPONLY ; // | ENTITY_FLAG_GRAVITY
+    Flags = ENTITY_FLAG_NONE ; // | ENTITY_FLAG_GRAVITY
 
-    MaxSpeedX = 2;
-    MaxSpeedY = 0;
-
-    MoveLeft = true;
-    Anim_Control.Stop();
-    Anim_Control.CurrentFrame = 9;
+    reborn();
 }
 
 void UFO::OnLoop() {
@@ -69,5 +65,24 @@ void UFO::SetTarget(float *x, float *y) {
 }
 
 bool UFO::OnCollision(Entity *Entity) {
+    reduceLifeByPercentage(DEFAULT_CANNON_MISSIL_POWER);
     Anim_Control.Play();
+    if (isDead()) {
+        Flags = Flags | ENTITY_FLAG_GRAVITY;
+
+        MaxSpeedX = 5;
+        MaxSpeedY = 3;
+    }
+    return false;
+}
+
+void UFO::reborn() {
+    MaxSpeedX = 1.5;
+    MaxSpeedY = 0;
+
+    MoveLeft = true;
+    MoveRight = false;
+    Anim_Control.Stop();
+    Anim_Control.CurrentFrame = 9;
+    LiveEntity::reborn();
 }

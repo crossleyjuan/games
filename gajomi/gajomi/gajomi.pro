@@ -41,7 +41,8 @@ SOURCES += main.cpp \
     ufo.cpp \
     missil.cpp \
     cannon.cpp \
-    level.cpp
+    level.cpp \
+    liveentity.cpp
 
 HEADERS  += \
     app.h \
@@ -50,7 +51,9 @@ HEADERS  += \
     ufo.h \
     missil.h \
     cannon.h \
-    level.h
+    level.h \
+    liveentity.h \
+    gamedefs.h
 
 FORMS    +=
 

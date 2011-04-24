@@ -27,6 +27,7 @@ private:
     SDL_Surface*    _surfBackground;
 
     Entity* _player;
+    void OnLoop();
 
 public:
     static Engine GameEngine;
@@ -40,7 +41,8 @@ public:
 
     bool OnInit();
     void OnEvent(SDL_Event* evt);
-    void OnLoop();
+    virtual void OnLocalLoop();
+
     void OnRender();
     void OnCleanUp();
 

@@ -44,8 +44,8 @@ void Missil::OnLoop() {
     dirX = dirX / hyp;
     dirY = dirY / hyp;
 
-    float newX = dirX * 250 * FPS::FPSControl.GetSpeedFactor();
-    float newY = dirY * 250 * FPS::FPSControl.GetSpeedFactor();
+    float newX = dirX * 350 * FPS::FPSControl.GetSpeedFactor();
+    float newY = dirY * 350 * FPS::FPSControl.GetSpeedFactor();
 /*
     AccelX = 1;
     AccelY = tang * (AccelX - X) + Y;
@@ -70,7 +70,7 @@ bool Missil::OnCollision(Entity *Entity) {
     _fired = false;
     _explosionSound->Play();
     Engine::GameEngine.RemoveEntity(this);
-    return true;
+    return true;// avoid reprocess
 }
 
 bool Missil::isFired() {

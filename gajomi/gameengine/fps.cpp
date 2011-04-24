@@ -33,5 +33,5 @@ int FPS::GetFPS() {
 }
 
 float FPS::GetSpeedFactor() {
-    return 0.05f;
+    return SpeedFactor;
 }

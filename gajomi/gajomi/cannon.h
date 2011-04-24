@@ -1,9 +1,9 @@
 #ifndef CANNON_H
 #define CANNON_H
 
-#include "entity.h"
+#include "liveentity.h"
 
-class Cannon: public Entity
+class Cannon: public LiveEntity
 {
 private:
     float* targetX;

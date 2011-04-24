@@ -16,6 +16,7 @@ public:
     App();
     virtual ~App();
     void OnExecute();
+    virtual void OnLocalLoop();
     virtual void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
     virtual void OnKeyUp(SDLKey sym, SDLMod mod, Uint16 unicode);
 

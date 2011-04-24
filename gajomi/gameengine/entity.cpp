@@ -299,9 +299,18 @@ bool Entity::PosValidTile(Tile* Tile) {
 
 bool Entity::PosValidEntity(Entity* Entity, int NewX, int NewY) {
     if(this != Entity && Entity != NULL && Entity->Dead == false &&
-// Removed to allow enemies collision with walls
-//        Entity->Flags ^ ENTITY_FLAG_MAPONLY &&
+        Entity->Flags ^ ENTITY_FLAG_MAPONLY &&
         Entity->Collides(NewX + Col_X, NewY + Col_Y, Width - Col_Width - 1, Height - Col_Height - 1) == true) {
+
+        // Checks to avoid duplicates
+        for (std::vector<EntityCol>::iterator iter = EntityCol::EntityColList.begin()
+            ; iter != EntityCol::EntityColList.end(); iter++) {
+            EntityCol col = *iter;
+            if ((col.EntityA == Entity) || (col.EntityB == Entity)) {
+                return false;
+            }
+        }
+
         EntityCol EntityCol;
 
         EntityCol.EntityA = this;
@@ -326,4 +335,12 @@ bool Entity::Jump() {
 void Entity::refreshCenter() {
     centerX = X + (Width / 2);
     centerY = Y + (Height / 2);
+}
+
+bool Entity::IsMoving() {
+    if ((SpeedX == 0) && (SpeedY == 0)) {
+        return false;
+    } else {
+        return true;
+    }
 }

@@ -16,9 +16,10 @@ enum {
 enum {
     ENTITY_FLAG_NONE    = 0,
 
-    ENTITY_FLAG_GRAVITY = 0x00000001,
-    ENTITY_FLAG_GHOST   = 0x00000002,
-    ENTITY_FLAG_MAPONLY = 0x00000004
+    ENTITY_FLAG_GRAVITY    = 0x00000001,
+    ENTITY_FLAG_GHOST      = 0x00000002,
+    ENTITY_FLAG_MAPONLY    = 0x00000004
+
 };
 
 class GAMEENGINESHARED_EXPORT Entity {
@@ -93,7 +94,7 @@ class GAMEENGINESHARED_EXPORT Entity {
 
     public:
         void    OnMove(float MoveX, float MoveY);
-
+        bool    IsMoving();
         void    StopMove();
 
     public:

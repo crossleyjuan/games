@@ -15,7 +15,8 @@ Text::Text(char* text, int x, int y)
 
     X = x;
     Y = y;
-    Flags = ENTITY_FLAG_MAPONLY | ENTITY_FLAG_GHOST;
+    Type = ENTITY_TYPE_GENERIC;
+    Flags = ENTITY_FLAG_GHOST;
     this->AccelX = 0;
     this->AccelY = 0;
     this->Width = strlen(text)*24;
