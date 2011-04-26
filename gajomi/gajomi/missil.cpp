@@ -13,7 +13,6 @@ bool Missil::OnInit() {
     if (!Entity::OnLoad("./images/rocket.png", 16, 30, 1)) {
         return false;
     }
-    _explosionSound = new Sound("./sounds/Explosions.wav");
     return true;
 }
 
@@ -44,8 +43,8 @@ void Missil::OnLoop() {
     dirX = dirX / hyp;
     dirY = dirY / hyp;
 
-    float newX = dirX * 350 * FPS::FPSControl.GetSpeedFactor();
-    float newY = dirY * 350 * FPS::FPSControl.GetSpeedFactor();
+    float newX = dirX * 25;
+    float newY = dirY * 25;
 /*
     AccelX = 1;
     AccelY = tang * (AccelX - X) + Y;
@@ -68,7 +67,6 @@ void Missil::Fire() {
 
 bool Missil::OnCollision(Entity *Entity) {
     _fired = false;
-    _explosionSound->Play();
     Engine::GameEngine.RemoveEntity(this);
     return true;// avoid reprocess
 }

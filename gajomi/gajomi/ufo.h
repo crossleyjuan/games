@@ -2,6 +2,7 @@
 #define UFO_H
 
 #include "enemy.h"
+#include "sound.h"
 
 class UFO: public Enemy
 {
@@ -9,6 +10,7 @@ private:
     float* targetX;
     float* targetY;
     bool    _isOnGround;
+    Sound* _explosionSound;
 
 public:
     UFO();

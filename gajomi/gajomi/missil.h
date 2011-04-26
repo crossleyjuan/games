@@ -14,7 +14,6 @@ private:
     float _speedY;
 
     bool _fired;
-    Sound* _explosionSound;
 
 public:
     Missil();

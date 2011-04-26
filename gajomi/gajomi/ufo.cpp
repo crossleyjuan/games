@@ -9,6 +9,7 @@ UFO::UFO()
 
 void UFO::OnInit() {
     OnLoad("./images/ufo2.png", 300, 72, 11);
+    _explosionSound = new Sound("./sounds/Explosions.wav");
     Type =  ENTITY_TYPE_GENERIC;
     Flags = ENTITY_FLAG_NONE ; // | ENTITY_FLAG_GRAVITY
 
@@ -65,6 +66,7 @@ void UFO::SetTarget(float *x, float *y) {
 }
 
 bool UFO::OnCollision(Entity *Entity) {
+    _explosionSound->Play();
     reduceLifeByPercentage(DEFAULT_CANNON_MISSIL_POWER);
     Anim_Control.Play();
     if (isDead()) {
