@@ -7,6 +7,7 @@ class LiveEntity: public Entity
 {
 private:
     double _life;
+    double _maxLife;
     bool _dead;
 
 public:
@@ -17,6 +18,8 @@ public:
     void        reduceLifeByPercentage(double perc);
     virtual void        reborn();
     double      currentLife();
+    void        setMaxLife(double life);
+    double      maxLife();
 };
 
 #endif // LIVEENTITY_H

@@ -6,7 +6,6 @@
 App::App()
 {
     _text = NULL;
-    _hits = 0;
     _beep = NULL;
 }
 
@@ -71,16 +70,9 @@ void App::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
         _missil.Y = 520;
         AddEntity(&_missil);
         _missil.Fire();
-        _hits++;
-        if (_hits > 4) {
-            _level.NextLevel();
-            _hits = 0;
-        } else {
-            _level.CreateLaunchCode();
-        }
         renderLaunchCode();
     } else {
-        _cannon.reduceLifeByPercentage(DEFAULT_RESTORE_LIFE);
+        _ufo.reduceLifeByPercentage(DEFAULT_RESTORE_LIFE);
         _beep->Play();
     }
 }
@@ -93,6 +85,11 @@ void App::renderLaunchCode() {
     if (_text != NULL) {
         RemoveEntity(_text);
     }
+    int current = _level.GetLaunchCode();
+    do {
+        _level.CreateLaunchCode();
+    } while (_level.GetLaunchCode() == current);
+
     char* code = (char*)malloc(16);
     memset(code, 0, 16);
     sprintf(code, "Launch Code: %c", _level.GetLaunchCode());
@@ -104,6 +101,10 @@ void App::renderLaunchCode() {
 void App::OnLocalLoop() {
     if (_ufo.isDead() && !_ufo.IsMoving()) {
         _ufo.reborn();
+        _level.NextLevel();
+        // Increases the maximum life
+        _ufo.setMaxLife(_ufo.maxLife() * 1.2);
+        renderLaunchCode();
         _ufo.X = 200;
         _ufo.Y = 120;
     }

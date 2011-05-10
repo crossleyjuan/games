@@ -1,6 +1,6 @@
 #include "enemy.h"
 
-Enemy::Enemy()
+Enemy::Enemy() : LiveEntity()
 {
     Type =  ENTITY_TYPE_GENERIC;
 

@@ -1,7 +1,7 @@
 #include "ufo.h"
 #include "gamedefs.h"
 
-UFO::UFO()
+UFO::UFO(): Enemy()
 {
     targetX = NULL;
     targetY = NULL;
@@ -17,32 +17,6 @@ void UFO::OnInit() {
 }
 
 void UFO::OnLoop() {
-    /*
-    if (targetX == NULL) return;
-
-    float pointX = this->X + (this->Width / 2);
-    float pointY = this->Y + this->Height;
-
-    if ((this->X + this->Width - (pointY / 2)) > *targetX) {
-        MoveLeft = true;
-        MoveRight = false;
-    }
-    if ((this->X + (pointY / 2)) < *targetX) {
-//    if ((pointX < (*targetX - (pointY * 0.2)))) {
-        MoveRight = true;
-        MoveLeft = false;
-    }
-    */
-/*
-    if ((this->X + (this->Width / 2)) > *targetX) {
-        MoveLeft = true;
-        MoveRight = false;
-    }
-    if ((this->X + (this->Width / 2)) < *targetX) {
-        MoveRight = true;
-        MoveLeft = false;
-    }
-    */
     Enemy::OnLoop();
     if (Anim_Control.IsRunning() && Anim_Control.CurrentFrame == 9) {
         Anim_Control.Stop();

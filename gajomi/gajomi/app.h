@@ -33,7 +33,6 @@ private:
     Sound*   _beep;
 
     Level _level;
-    int _hits;
 
     void renderLaunchCode();
 };
