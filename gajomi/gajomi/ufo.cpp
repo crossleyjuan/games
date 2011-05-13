@@ -7,13 +7,15 @@ UFO::UFO(): Enemy()
     targetY = NULL;
 }
 
-void UFO::OnInit() {
+bool UFO::OnInit() {
     OnLoad("./images/ufo2.png", 300, 72, 11);
     _explosionSound = new Sound("./sounds/Explosions.wav");
     Type =  ENTITY_TYPE_GENERIC;
     Flags = ENTITY_FLAG_NONE ; // | ENTITY_FLAG_GRAVITY
 
     reborn();
+
+    return true;
 }
 
 void UFO::OnLoop() {

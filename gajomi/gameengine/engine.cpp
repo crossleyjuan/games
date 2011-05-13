@@ -84,6 +84,11 @@ void Engine::OnLoop() {
 void Engine::OnRender() {
 //    Area::AreaControl.OnRender(_surfDisplay, -Camera::CameraControl.GetX(), -Camera::CameraControl.GetY());
     Surface::OnDraw(_surfDisplay, _surfBackground, 0, 0);
+    for (std::vector<DrawableObject*>::iterator iter = _objects.begin(); iter != _objects.end(); iter++) {
+        DrawableObject* obj = (DrawableObject*)*iter;
+        obj->OnRender(_surfDisplay);
+    }
+
     for(int i = 0;i < Entity::EntityList.size();i++) {
         if(!Entity::EntityList[i]) continue;
         Entity::EntityList[i]->OnRender(_surfDisplay);
@@ -95,6 +100,13 @@ void Engine::OnRender() {
 void Engine::OnCleanUp() {
     SDL_FreeSurface(_surfDisplay);
     Area::AreaControl.OnCleanup();
+
+    for (std::vector<DrawableObject*>::iterator iter = _objects.begin(); iter != _objects.end(); iter++) {
+        DrawableObject* obj = (DrawableObject*)*iter;
+        obj->OnCleanup();
+    }
+
+    _objects.clear();
 
     for(int i = 0;i < Entity::EntityList.size();i++) {
         if(!Entity::EntityList[i]) continue;
@@ -199,3 +211,6 @@ bool Engine::loadBackground(char *file) {
     }
 }
 
+void Engine::AddObject(DrawableObject* object) {
+    _objects.push_back(object);
+}

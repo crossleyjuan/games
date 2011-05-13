@@ -42,7 +42,8 @@ SOURCES += \
     engine.cpp \
     text.cpp \
     soundengine.cpp \
-    sound.cpp
+    sound.cpp \
+    life.cpp
 
 HEADERS +=\
         gameengine_global.h \
@@ -59,7 +60,9 @@ HEADERS +=\
     engine.h \
     text.h \
     soundengine.h \
-    sound.h
+    sound.h \
+    life.h \
+    DrawableObject.h
 
 OTHER_FILES += \
     maps/2.map \

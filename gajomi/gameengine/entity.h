@@ -4,6 +4,8 @@
 #include "animation.h"
 #include "tile.h"
 #include "gameengine_global.h"
+#include "DrawableObject.h"
+
 #include <vector>
 #include <SDL.h>
 
@@ -22,7 +24,7 @@ enum {
 
 };
 
-class GAMEENGINESHARED_EXPORT Entity {
+class GAMEENGINESHARED_EXPORT Entity: public DrawableObject {
 
     public:
         static std::vector<Entity*>    EntityList;
@@ -81,6 +83,7 @@ class GAMEENGINESHARED_EXPORT Entity {
     public:
         virtual bool OnLoad(char* File, int Width, int Height, int MaxFrames);
 
+        virtual bool OnInit();
         virtual void OnLoop();
 
         virtual void OnRender(SDL_Surface* Surf_Display);

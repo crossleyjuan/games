@@ -14,7 +14,7 @@ private:
 
 public:
     UFO();
-    void OnInit();
+    bool OnInit();
 
     virtual bool OnMapCollision();
     virtual bool OnCollision(Entity *Entity);

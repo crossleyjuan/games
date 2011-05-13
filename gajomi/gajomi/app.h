@@ -9,6 +9,7 @@
 #include "level.h"
 #include "text.h"
 #include "sound.h"
+#include "life.h"
 
 class App : public Engine
 {
@@ -31,6 +32,7 @@ private:
     Missil  _missil;
     Text*    _text;
     Sound*   _beep;
+    Life    _lifeUFO;
 
     Level _level;
 

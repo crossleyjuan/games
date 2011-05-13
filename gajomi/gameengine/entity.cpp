@@ -46,6 +46,10 @@ Entity::Entity() {
     Col_Height = 0;
 }
 
+bool Entity::OnInit() {
+
+}
+
 Entity::Entity(const Entity &ent) {
     this->AccelX = ent.AccelX;
     this->AccelY = ent.AccelY;

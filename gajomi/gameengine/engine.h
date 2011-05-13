@@ -28,6 +28,7 @@ private:
 
     Entity* _player;
     void OnLoop();
+    std::vector<DrawableObject*> _objects;
 
 public:
     static Engine GameEngine;
@@ -35,6 +36,7 @@ public:
     Engine();
 
     void AddEntity(Entity* ent);
+    void AddObject(DrawableObject* object);
     void RemoveEntity(Entity* ent);
     void SetPlayer(Entity* ent);
     bool loadBackground(char* file);

@@ -30,13 +30,19 @@ bool App::OnInit() {
     if (!_level.OnInit()) {
         return false;
     }
+    if (!_lifeUFO.OnInit()) {
+        return false;
+    }
     _beep = new Sound("./sounds/beep.wav");
 
     _ufo.OnInit();
     _ufo.X = 200;
     _ufo.Y = 120;
+    _lifeUFO.X = 100;
+    _lifeUFO.Y = 100;
     _cannon.Y = 550;
     _cannon.X = 500;
+    AddObject(&_lifeUFO);
     AddEntity(&_ufo);
     SetPlayer(&_cannon);
     //AddEntity(&_missil);
@@ -71,6 +77,7 @@ void App::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
         AddEntity(&_missil);
         _missil.Fire();
         renderLaunchCode();
+        _lifeUFO.SetValue(10);
     } else {
         _ufo.reduceLifeByPercentage(DEFAULT_RESTORE_LIFE);
         _beep->Play();
