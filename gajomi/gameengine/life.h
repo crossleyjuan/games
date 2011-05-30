@@ -19,6 +19,7 @@ public:
     int Width;
     int Height;
     void SetValue(int);
+    int Value();
 private:
     int _value;
     int _currentFrame;

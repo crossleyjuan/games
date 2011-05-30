@@ -4,7 +4,7 @@
 
 Life::Life()
 {
-    this->_value = 0;
+    this->_value = 100;
     _currentFrame = 0;
     this->surface = NULL;
     Width = 30;
@@ -29,7 +29,11 @@ void Life::OnCleanup() {
 
 void Life::SetValue(int value) {
     _value = value;
-    _currentFrame++;
+    _currentFrame = 10 - (value / 10);
+}
+
+int Life::Value() {
+    return _value;
 }
 
 void Life::OnRender(SDL_Surface *display) {

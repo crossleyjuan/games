@@ -1,7 +1,7 @@
 #include "cannon.h"
 #include "math.h"
 
-Cannon::Cannon()
+Cannon::Cannon(): LiveEntity(new Life())
 {
     current = 0;
 }

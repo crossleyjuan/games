@@ -1,10 +1,11 @@
 #include "ufo.h"
 #include "gamedefs.h"
 
-UFO::UFO(): Enemy()
+UFO::UFO(Life* life): Enemy(life)
 {
     targetX = NULL;
     targetY = NULL;
+    _life = life;
 }
 
 bool UFO::OnInit() {

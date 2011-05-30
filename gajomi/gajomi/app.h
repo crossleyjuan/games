@@ -28,7 +28,7 @@ private:
     //Engine  _engine;
 //    Player  _player;
     Cannon  _cannon;
-    UFO     _ufo;
+    UFO*     _ufo;
     Missil  _missil;
     Text*    _text;
     Sound*   _beep;

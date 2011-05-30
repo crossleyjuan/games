@@ -6,7 +6,7 @@
 class Enemy: public LiveEntity
 {
 public:
-    Enemy();
+    Enemy(Life* life);
 
 };
 

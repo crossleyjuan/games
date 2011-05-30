@@ -12,6 +12,7 @@ App::App()
 App::~App() {
     // delete(_beep) is not working
     _beep = 0;
+    delete(_ufo);
 }
 
 bool App::OnInit() {
@@ -33,22 +34,24 @@ bool App::OnInit() {
     if (!_lifeUFO.OnInit()) {
         return false;
     }
+
     _beep = new Sound("./sounds/beep.wav");
 
-    _ufo.OnInit();
-    _ufo.X = 200;
-    _ufo.Y = 120;
+    _ufo = new UFO(&_lifeUFO);
+    _ufo->OnInit();
+    _ufo->X = 200;
+    _ufo->Y = 120;
     _lifeUFO.X = 100;
-    _lifeUFO.Y = 100;
+    _lifeUFO.Y = 10;
     _cannon.Y = 550;
     _cannon.X = 500;
     AddObject(&_lifeUFO);
-    AddEntity(&_ufo);
+    AddEntity(_ufo);
     SetPlayer(&_cannon);
     //AddEntity(&_missil);
-    _ufo.SetTarget(&_cannon.X, &_cannon.Y);
-    _cannon.SetTarget(&_ufo.centerX, &_ufo.centerY);
-    _missil.SetTarget(&_ufo.centerX, &_ufo.centerY);
+    _ufo->SetTarget(&_cannon.X, &_cannon.Y);
+    _cannon.SetTarget(&_ufo->centerX, &_ufo->centerY);
+    _missil.SetTarget(&_ufo->centerX, &_ufo->centerY);
     renderLaunchCode();
 
     return true;
@@ -67,7 +70,7 @@ void App::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
         return;
     }
 
-    if (_ufo.isDead()) {
+    if (_ufo->isDead()) {
         return;
     }
 
@@ -77,9 +80,8 @@ void App::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
         AddEntity(&_missil);
         _missil.Fire();
         renderLaunchCode();
-        _lifeUFO.SetValue(10);
     } else {
-        _ufo.reduceLifeByPercentage(DEFAULT_RESTORE_LIFE);
+        _ufo->reduceLifeByPercentage(DEFAULT_RESTORE_LIFE);
         _beep->Play();
     }
 }
@@ -106,13 +108,11 @@ void App::renderLaunchCode() {
 }
 
 void App::OnLocalLoop() {
-    if (_ufo.isDead() && !_ufo.IsMoving()) {
-        _ufo.reborn();
+    if (_ufo->isDead() && !_ufo->IsMoving()) {
+        _ufo->reborn();
         _level.NextLevel();
-        // Increases the maximum life
-        _ufo.setMaxLife(_ufo.maxLife() * 1.2);
         renderLaunchCode();
-        _ufo.X = 200;
-        _ufo.Y = 120;
+        _ufo->X = 200;
+        _ufo->Y = 120;
     }
 }

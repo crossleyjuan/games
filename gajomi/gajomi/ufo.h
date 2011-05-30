@@ -3,6 +3,7 @@
 
 #include "enemy.h"
 #include "sound.h"
+#include "life.h"
 
 class UFO: public Enemy
 {
@@ -13,7 +14,7 @@ private:
     Sound* _explosionSound;
 
 public:
-    UFO();
+    UFO(Life* life);
     bool OnInit();
 
     virtual bool OnMapCollision();

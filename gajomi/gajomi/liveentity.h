@@ -2,24 +2,23 @@
 #define LIVEENTITY_H
 
 #include "entity.h"
+#include "life.h"
 
 class LiveEntity: public Entity
 {
 private:
-    double _life;
-    double _maxLife;
     bool _dead;
+protected:
+    Life*  _life;
 
 public:
-    LiveEntity();
+    LiveEntity(Life* life);
     virtual ~LiveEntity();
 
     bool        isDead();
     void        reduceLifeByPercentage(double perc);
     virtual void        reborn();
     double      currentLife();
-    void        setMaxLife(double life);
-    double      maxLife();
 };
 
 #endif // LIVEENTITY_H

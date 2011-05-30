@@ -1,10 +1,10 @@
 #include "liveentity.h"
 
-LiveEntity::LiveEntity()
+LiveEntity::LiveEntity(Life* life)
 {
     this->_dead = false;
-    this->_life = 100.0;
-    this->_maxLife = 100.0;
+    _life = life;
+    _life->SetValue(100);
 }
 
 LiveEntity::~LiveEntity() {
@@ -15,28 +15,22 @@ bool LiveEntity::isDead() {
 }
 
 void LiveEntity::reduceLifeByPercentage(double perc) {
-    _life -= perc;
-    if (_life <= 0) {
-        _life = 0;
+    _life->SetValue(_life->Value() - perc);
+    if (_life->Value() <= 0) {
+        _life->SetValue(0);
         _dead = true;
+    } else if (_life->Value() > 100) {
+        _life->SetValue(100);
+        _dead = false;
     }
 }
 
 void LiveEntity::reborn() {
-    _life = _maxLife;
+    _life->SetValue(100);
     _dead = false;
 }
 
 double LiveEntity::currentLife() {
-    return _life;
+    return _life->Value();
 }
 
-void LiveEntity::setMaxLife(double life) {
-    _maxLife = life;
-    _dead = false;
-    _life = _maxLife;
-}
-
-double LiveEntity::maxLife() {
-    return _maxLife;
-}

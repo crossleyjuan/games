@@ -34,7 +34,7 @@ bool Engine::OnInit() {
         return false;
     }
 
-    SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL / 3);
+//    SDL_EnableKeyRepeat(1, SDL_DEFAULT_REPEAT_INTERVAL / 3);
 
     return true;
 }
