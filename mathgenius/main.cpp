@@ -4,20 +4,24 @@
 
 using namespace std;
 
-int main(int argc, char *argv[])
-{
-    int nums[10][10];
+int matrix[10][10];
 
+void calcMatrix() {
     for (int x = 0; x <= 9; x++) {
         for (int y = 0; y <= 9; y++) {
             int val = rand() % 10;
-            nums[x][y] = val;
+            matrix[x][y] = val;
         }
     }
+}
+
+int main(int argc, char *argv[])
+{
+
 
     for (int x = 0; x <= 9; x++) {
         for (int y = 0; y <= 9; y++) {
-            printf("%d ", nums[x][y]);
+            printf("%d ", matrix[x][y]);
         }
         printf("\n");
     }
