@@ -45,16 +45,18 @@ void printMatrix() {
     }
 }
 
-int processRow(int result, int x, int y) {
+int processRowRight(int result, int x, int y, bool clear) {
     int calc = 0;
     x++;
     int start = x;
     int matches = 0;
+    bool found = false;
     while (x < 10) {
         int cell = matrix[x][y];
         calc += cell;
         if (result == calc) {
             matches++;
+            found = true;
             break;
         }
         if (calc > result) {
@@ -63,7 +65,7 @@ int processRow(int result, int x, int y) {
         matches++;
         x++;
     }
-    if (matches > 0) {
+    if (clear && found) {
         for (int i = start; i < 10; i++) {
             if ((i + matches) < 10) {
                 matrix[i][y] = matrix[i + matches][y];
@@ -73,19 +75,62 @@ int processRow(int result, int x, int y) {
             }
         }
     }
-    return matches;
+    if (found) {
+        return matches;
+    } else {
+        return 0;
+    }
 }
 
-int processCol(int result, int x, int y) {
+int processRowLeft(int result, int x, int y, bool clear) {
     int calc = 0;
-    y--;
-    int start = y;
+    x--;
+    int start = x;
     int matches = 0;
-    while (y > 0) {
+    bool found = false;
+    while (x >= 0) {
         int cell = matrix[x][y];
         calc += cell;
         if (result == calc) {
             matches++;
+            found = true;
+            break;
+        }
+        if (calc > result) {
+            break;
+        }
+        matches++;
+        x--;
+    }
+    if (clear && found) {
+        for (int i = start; i > 0; i--) {
+            if ((i - matches) > -1) {
+                matrix[i][y] = matrix[i - matches][y];
+                matrix[i - matches][y] = 0;
+            } else {
+                matrix[i][y] = 0;
+            }
+        }
+    }
+    if (found) {
+        return matches;
+    } else {
+        return 0;
+    }
+}
+
+int processColTop(int result, int x, int y, bool clear) {
+    int calc = 0;
+    y--;
+    int start = y;
+    int matches = 0;
+    bool found = false;
+    while (y >= 0) {
+        int cell = matrix[x][y];
+        calc += cell;
+        if (result == calc) {
+            matches++;
+            found = true;
             break;
         }
         if (calc > result) {
@@ -94,7 +139,7 @@ int processCol(int result, int x, int y) {
         matches++;
         y--;
     }
-    if (matches > 0) {
+    if (clear && found) {
         for (int i = start; i > 0; i--) {
             if ((i - matches) > -1) {
                 matrix[x][i] = matrix[x][i - matches];
@@ -104,17 +149,80 @@ int processCol(int result, int x, int y) {
             }
         }
     }
-    return matches;
+    if (found) {
+        return matches;
+    } else {
+        return 0;
+    }
 }
 
-void processPos(int x, int y) {
-    int result = matrix[x][y];
-    int resRow = processRow(result, x, y);
-    int resCol = processCol(result, x, y);
-    if (resRow > 0 || resCol > 0) {
-        matrix[x][y] = 0;
+int processColBottom(int result, int x, int y, bool clear) {
+    int calc = 0;
+    y++;
+    int start = y;
+    int matches = 0;
+    bool found = false;
+    while (y < 10) {
+        int cell = matrix[x][y];
+        calc += cell;
+        if (result == calc) {
+            matches++;
+            found = true;
+            break;
+        }
+        if (calc > result) {
+            break;
+        }
+        matches++;
+        y++;
     }
-    score += (resRow * 10) + (resCol * 10);
+    if (clear && found) {
+        for (int i = start; i < 10; i++) {
+            if ((i + matches) < 10) {
+                matrix[x][i] = matrix[x][i + matches];
+                matrix[x][i + matches] = 0;
+            } else {
+                matrix[x][i] = 0;
+            }
+        }
+    }
+    if (found) {
+        return matches;
+    } else {
+        return 0;
+    }
+}
+
+bool processPos(int x, int y, bool clear) {
+    int result = matrix[x][y];
+    if (result == 0) {
+        return false;
+    }
+    int resRowRight = processRowRight(result, x, y, clear);
+    int resColBottom = processColBottom(result, x, y, clear);
+    int resRowLeft = processRowLeft(result, x, y, clear);
+    int resColTop = processColTop(result, x, y, clear);
+
+    bool match = (resRowLeft > 0 || resColBottom > 0 || resRowRight > 0 || resColTop > 0);
+    if (clear && match) {
+        matrix[x][y] = 0;
+        score += (resRowLeft * 10) + (resColBottom * 10) +  (resRowRight * 10) + (resColTop * 10) ;
+    }
+    return match;
+}
+
+void checkValids() {
+    int validMoves = 0;
+    for (int y = 0; y < 10; y++) {
+        for (int x = 0; x < 10; x++) {
+            if (processPos(x, y, false)) {
+                validMoves++;
+            }
+        }
+    }
+    if (validMoves > 0) {
+        printf("You have %d valid moves to make\n", validMoves);
+    }
 }
 
 int main(int argc, char *argv[])
@@ -126,12 +234,14 @@ int main(int argc, char *argv[])
     while (x != 99) {
         printMatrix();
 
+        checkValids();
+
         printf("X:");
         scanf("%d", &x);
         printf("Y:");
         scanf("%d", &y);
 
-        processPos(x, y);
+        processPos(x, y, true);
     }
 
     getchar();
